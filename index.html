@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>価格計算機</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 5px 0;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>価格計算機</h2>
+    <label for="s">設定値段:</label>
+    <input type="number" id="s" name="s"><br>
+    
+    <label for="m">マケ手数料 :</label>
+    <input type="number" id="m" name="m" step="0.01"><br>
+    
+    <button onclick="calculate()">計算</button>
+    <span id="result"></span>
+
+    <script>
+        function calculate() {
+            let s = parseFloat(document.getElementById('s').value);
+            let m = parseFloat(document.getElementById('m').value);
+            
+            if (isNaN(s) || isNaN(m)) {
+                alert('有効な数値を入力してください。');
+                return;
+            }
+
+            let result = s * (1 + m/100);
+            document.getElementById('result').textContent = ` マケ表記値段: ${result.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
