@@ -16,18 +16,28 @@
     </style>
 </head>
 <body>
-    <h2>価格計算機</h2>
+    <h2>表示値段計算機</h2>
     <label for="s">設定値段:</label>
     <input type="number" id="s" name="s"><br>
     
-    <label for="m">マケ手数料 :</label>
+    <label for="m">マケ手数料 (%):</label>
     <input type="number" id="m" name="m" step="0.01"><br>
     
-    <button onclick="calculate()">計算</button>
+    <button onclick="calculateDisplay()">計算</button>
     <span id="result"></span>
 
+    <h2>設定値段計算機</h2>
+    <label for="hyouki">表記値段:</label>
+    <input type="number" id="hyouki" name="hyouki"><br>
+
+    <label for="tesuu">マケ手数料 (%):</label>
+    <input type="number" id="tesuu" name="tesuu" step="0.01"><br>
+
+    <button onclick="calculateSetting()">計算</button>
+    <span id="result1"></span>
+
     <script>
-        function calculate() {
+        function calculateDisplay() {
             let s = parseFloat(document.getElementById('s').value);
             let m = parseFloat(document.getElementById('m').value);
             
@@ -39,6 +49,23 @@
             let result = s * (1 + m/100);
             document.getElementById('result').textContent = ` マケ表記値段: ${result.toFixed(2)}`;
         }
+
+        function calculateSetting() {
+            let hyouki = parseFloat(document.getElementById('hyouki').value);
+            let tesuu = parseFloat(document.getElementById('tesuu').value);
+            
+            if (isNaN(hyouki) || isNaN(tesuu)) {
+                alert('有効な数値を入力してください。');
+                return;
+            }
+
+            let result = hyouki / (1 + tesuu/100);
+            document.getElementById('result1').textContent = ` 設定値段: ${result.toFixed(2)}`;
+        
     </script>
+    <br>
+    上がマケに表記される値段を計算出来る<br>
+
+    下がマケにこの値段で出したいを出せる
 </body>
 </html>
